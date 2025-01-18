@@ -2,7 +2,12 @@
 const nextConfig = {
   reactStrictMode: true,
   compiler: {
-    styledComponents: true,
+    styledComponents: {
+      ssr: true,
+    },
+  },
+  env: {
+    API_URL: process.env.API_URL,
   },
 };
 
