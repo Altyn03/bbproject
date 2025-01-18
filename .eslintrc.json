@@ -1,3 +1,38 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": ["next/core-web-vitals", "eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
+  "plugins": ["prettier", "@typescript-eslint"],
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+    "no-console": "warn",
+    "react/display-name": "off",
+    "quotes": ["warn", "single"],
+    "jsx-quotes": ["warn", "prefer-single"],
+    "prefer-const": "error",
+    "comma-dangle": 0,
+    "@typescript-eslint/comma-dangle": [
+      "warn",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "only-multiline"
+      }
+    ],
+    "@typescript-eslint/comma-spacing": "off",
+    "@typescript-eslint/object-curly-spacing": ["warn", "always"],
+    "max-len": ["warn", 120],
+    "semi": "warn",
+    "@typescript-eslint/semi": ["warn", "always"],
+    "space-infix-ops": "warn",
+    "@typescript-eslint/space-infix-ops": "warn",
+    "@typescript-eslint/type-annotation-spacing": "warn",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "default-case": "warn",
+    "no-redeclare": "warn",
+    "@typescript-eslint/no-redeclare": "warn",
+    "react/jsx-key": "error"
+  },
+  "root": true
 }
