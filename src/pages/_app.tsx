@@ -1,13 +1,10 @@
-import { store } from '@/store';
-import GlobalStyle from '@/styles/GlobalStyles';
 import { AppProps } from 'next/app';
-import { Provider } from 'react-redux';
+import { Providers } from './Providers';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Provider store={store}>
-      <GlobalStyle />
+    <Providers messages={pageProps.messages}>
       <Component {...pageProps} />
-    </Provider>
+    </Providers>
   );
 }

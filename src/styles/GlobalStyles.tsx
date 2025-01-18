@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
 
   html, body {
     height: 100%;
-    background-color:rgb(56, 53, 53);
+    background-color: #f9f9f9;
     font-family: 'Montserrat', sans-serif;
     color: #1e2057;
   }
