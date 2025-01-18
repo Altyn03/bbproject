@@ -8,9 +8,6 @@
     "start": "next start",
     "types": "tsc --noEmit",
     "lint": "next lint",
-    "lint-fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "format": "prettier --check .",
-    "format-fix": "prettier --write . && eslint . --quiet",
     "prepare": "husky"
   },
   "dependencies": {
