@@ -1,8 +1,9 @@
 {
   "home": {
-    "hello": "Hola",
-    "welcome": "Bienvenido a nuestro sitio",
-    "goodbye": "Adiós",
-    "thank_you": "Gracias por visitar"
+    "title": "BB Proekt",
+    "description": "Mi proyecto desarrollado por BB",
+    "takePart": "Participar",
+    "homePageTitle": "TITULO",
+    "homePageDescription": "¡Clasifica los equipos en el orden en que terminarán y obtén la oportunidad de ganar apuestas gratis!"
   }
 }

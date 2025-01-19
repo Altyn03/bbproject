@@ -1,8 +1,9 @@
 {
   "home": {
-    "hello": "你好",
-    "welcome": "欢迎来到我们的网站",
-    "goodbye": "再见",
-    "thank_you": "感谢您的访问"
+    "title": "BB 預告",
+    "description": "我为 BB 创建的项目",
+    "takePart": "参与",
+    "homePageTitle": "标题",
+    "homePageDescription": "按照最终排名对球队进行排名，就有机会赢得免费投注！"
   }
 }

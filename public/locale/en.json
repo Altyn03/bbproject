@@ -1,8 +1,9 @@
 {
   "home": {
-    "hello": "Hello",
-    "welcome": "Welcome to our site",
-    "goodbye": "Goodbye",
-    "thank_you": "Thank you for visiting"
+    "title": "BB Project",
+    "description": "My project created for BB",
+    "takePart": "Take part",
+    "homePageTitle": "TITLE",
+    "homePageDescription": "Rank the teams in order of the places they will finish and get a chance to win free bets!"
   }
 }

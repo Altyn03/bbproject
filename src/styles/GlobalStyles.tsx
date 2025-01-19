@@ -12,9 +12,10 @@ const GlobalStyle = createGlobalStyle`
 
   html, body {
     height: 100%;
-    background-color: #f9f9f9;
+    background-color: #100E10;
     font-family: 'Montserrat', sans-serif;
-    color: #1e2057;
+    color: #FFFFFF;
+    z-index: 0;
   }
 
   a {
@@ -40,6 +41,14 @@ const GlobalStyle = createGlobalStyle`
 
   input, textarea {
     font: inherit;
+  }
+
+  h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    padding: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
   }
 `;
 

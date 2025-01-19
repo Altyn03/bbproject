@@ -1,4 +1,6 @@
+import { Home } from '@/screens/Home';
 import { loadLocaleMessages } from '@/utils/loadLocalization';
+import { Meta } from '@/utils/seo/Meta';
 import { useTranslations } from 'next-intl';
 
 export async function getStaticProps({ locale }: { locale: string }) {
@@ -10,12 +12,12 @@ export async function getStaticProps({ locale }: { locale: string }) {
   };
 }
 
-export default function Home() {
+export default function HomePage() {
   const t = useTranslations('home');
 
   return (
-    <>
-      <main>{t('hello')}</main>
-    </>
+    <Meta title={t('title')} description={t('description')}>
+      <Home />
+    </Meta>
   );
 }
