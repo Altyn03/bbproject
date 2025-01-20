@@ -1,18 +1,25 @@
+import { ModalContentDnD } from '@/components/ModalContentDnD';
 import { PrizeFund } from '@/components/PrizeFund';
 import { Button } from '@/components/UI/Button';
+import { Modal } from '@/components/UI/Modal';
 import { Heading } from '@/components/UI/Typography';
+import { useModal } from '@/hooks/useModal';
 import { useTranslations } from 'next-intl';
 import styled from 'styled-components';
 
 export const Home = () => {
   const t = useTranslations('home');
+  const { isOpenModal, toggleModal, closeModal } = useModal();
+
   return (
     <main>
       <BannerContainer>
         <TitleContainer>
           <TitleDescription>
-            <Heading variant='h1'>{t('homePageTitle')}</Heading>
-            <Heading variant='h5' fontFamily='Open Sans, sans-serif'>
+            <Heading variant='h1' fontWeight={700}>
+              {t('homePageTitle')}
+            </Heading>
+            <Heading variant='h5' fontWeight={700} fontFamily='Open Sans, sans-serif'>
               {t('homePageDescription')}
             </Heading>
           </TitleDescription>
@@ -32,7 +39,20 @@ export const Home = () => {
           <LargeGradientDiv />
           <SmallGradientDiv />
           <ButtonContainer>
-            <Button size='big' color='primary' shadow width='242px' text={t('arrangeTeams')} />
+            <Button
+              size='big'
+              color='primary'
+              shadow
+              width='242px'
+              text={t('arrangeTeams')}
+              state='active'
+              onClick={toggleModal}
+            />
+            <Modal isOpen={isOpenModal} toggleModal={toggleModal}>
+              <ModalWrapper>
+                <ModalContentDnD closeModal={closeModal} />
+              </ModalWrapper>
+            </Modal>
           </ButtonContainer>
         </ContainerGradientWithButton>
       </MainContent>
@@ -308,4 +328,14 @@ const SmallGradientDiv = styled.div`
 
 const ButtonContainer = styled.div`
   z-index: 3;
+`;
+
+const ModalWrapper = styled.div`
+  background-color: #16171c;
+  position: relative;
+  padding: 32px 160px;
+  border-radius: 10px;
+  width: 1348px;
+  height: 800px;
+  box-shadow: 0px 0px 34px 0px rgba(209, 194, 194, 0.6);
 `;

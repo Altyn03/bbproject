@@ -5,6 +5,7 @@ export interface IButtonProps {
   width?: string;
   shadow?: boolean;
   text?: string;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export interface IStyledButtonProps {

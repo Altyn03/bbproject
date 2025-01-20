@@ -1,4 +1,4 @@
-import { TCard } from '@/utils/mockData';
+import { TCard } from '@/utils/mockData/cardsMockData';
 import { useTranslations } from 'next-intl';
 import styled from 'styled-components';
 import FreebetIcon from '../../../public/images/FreebetIcon.svg';
@@ -16,6 +16,7 @@ export const Card = ({ cardData }: { cardData: TCard }) => {
         </Heading>
         <Heading
           variant='h3'
+          fontWeight={700}
           fontFamily='Gilroy-Medium, sans-serif'
           style={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
           {cardData.prize}

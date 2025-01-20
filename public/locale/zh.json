@@ -11,6 +11,13 @@
     "master": "大师",
     "veteran": "老手",
     "сommander": "指挥官",
-    "guessedTeams": "{number} 个猜中的球队"
+    "guessedTeams": "{number} 个猜中的球队",
+    "selectPlace": "移动球队标志到相应位置",
+    "selected": "已选择",
+    "edit": "编辑",
+    "confirmSelection": "确认选择",
+    "randomSelection": "随机选择",
+    "singlePlace": "{place} 地方",
+    "multiplePlaces": "{place} 地方"
   }
 }

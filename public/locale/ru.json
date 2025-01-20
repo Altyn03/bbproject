@@ -11,6 +11,13 @@
     "master": "Мастер",
     "veteran": "Ветеран",
     "сommander": "Командор",
-    "guessedTeams": "{number} угаданных команд"
+    "guessedTeams": "{number} угаданных команд",
+    "selectPlace": "Перенеси логотип команды на соответствующее место",
+    "selected": "Выбрано",
+    "edit": "Редактировать",
+    "confirmSelection": "Подтвердить выбор",
+    "randomSelection": "Случайный выбор",
+    "singlePlace": "{place} место",
+    "multiplePlaces": "{place} места"
   }
 }

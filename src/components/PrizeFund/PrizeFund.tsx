@@ -1,4 +1,4 @@
-import { cardsData } from '@/utils/mockData';
+import { cardsData } from '@/utils/mockData/cardsMockData';
 import { useTranslations } from 'next-intl';
 import { useRef } from 'react';
 import styled from 'styled-components';
@@ -28,7 +28,7 @@ export const PrizeFund = () => {
 
   return (
     <PrizeFundDiv>
-      <Heading variant='h2' style={{ textAlign: 'center' }}>
+      <Heading variant='h2' style={{ textAlign: 'center' }} fontWeight={700}>
         {t('prizeFund')}
       </Heading>
       <SwiperContainer>

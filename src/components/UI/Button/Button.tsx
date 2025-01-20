@@ -15,6 +15,7 @@ const buttonColors: Record<TButtonColor, string> = {
 const StyledButton = styled.button<IStyledButtonProps>`
   padding: ${({ size }) => buttonPaddings[size] || buttonPaddings.big};
   width: ${({ width }) => width || '100%'};
+  ${({ size }) => size === 'big' && `height: 60px;`};
   background-color: ${({ color, state }) =>
     state === 'disabled'
       ? '#27282EE5'
@@ -69,9 +70,15 @@ export const Button: FC<PropsWithChildren<IButtonProps>> = ({
   shadow,
   children,
   text,
-  ...props
+  onClick,
 }) => (
-  <StyledButton size={size} color={color} state={state} shadow={shadow} width={width} {...props}>
+  <StyledButton
+    size={size}
+    color={color}
+    state={state}
+    shadow={shadow}
+    width={width}
+    onClick={state === 'active' ? onClick : undefined}>
     {text ? (
       <StyledButtonText size={size} state={state} color={color}>
         {text}

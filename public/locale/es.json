@@ -11,6 +11,13 @@
     "master": "Maestro",
     "veteran": "Veterano",
     "сommander": "Comandante",
-    "guessedTeams": "{number} equipos acertados"
+    "guessedTeams": "{number} equipos acertados",
+    "selectPlace": "Mover el logo del equipo a la ubicación correspondiente",
+    "selected": "Seleccionado",
+    "edit": "Editar",
+    "confirmSelection": "Confirmar selección",
+    "randomSelection": "Selección aleatoria",
+    "singlePlace": "{place} puesto",
+    "multiplePlaces": "{place} lugares"
   }
 }

@@ -12,7 +12,7 @@ const StyledHeading = styled.p<{
   userSelect?: boolean;
 }>`
   color: ${({ color }) => color || '#fff'};
-  font-weight: ${({ fontWeight }) => fontWeight || 700};
+  font-weight: ${({ fontWeight }) => fontWeight || 500};
   font-family: ${({ fontFamily }) => fontFamily || 'Roboto, sans-serif'};
   ${({ userSelect }) => userSelect && 'user-select: none;'}
   ${({ ellipsis }) => ellipsis && 'text-overflow: ellipsis; white-space: nowrap; overflow: hidden;'}
