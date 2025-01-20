@@ -110,7 +110,7 @@ const StyledHeading = styled.p<{
       case 'h6':
         return '20px';
       default:
-        return '14px';
+        return '20px';
     }
   }};
   line-height: ${({ variant }) => {
@@ -118,7 +118,7 @@ const StyledHeading = styled.p<{
       case 'h1':
         return '93.75px';
       case 'h2':
-        return '83.38px';
+        return '84.38px';
       case 'h3':
         return '40px';
       case 'h4':
@@ -128,7 +128,7 @@ const StyledHeading = styled.p<{
       case 'h6':
         return '24.26px';
       default:
-        return '18px';
+        return '24.26px';
     }
   }};
 `;

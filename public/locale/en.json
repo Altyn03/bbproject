@@ -4,6 +4,13 @@
     "description": "My project created for BB",
     "takePart": "Take part",
     "homePageTitle": "TITLE",
-    "homePageDescription": "Rank the teams in order of the places they will finish and get a chance to win free bets!"
+    "homePageDescription": "Rank the teams in order of the places they will finish and get a chance to win free bets!",
+    "prizeFund": "Prize Fund",
+    "arrangeTeams": "Arrange Teams",
+    "elite": "Elite",
+    "master": "Master",
+    "veteran": "Veteran",
+    "сommander": "Commander",
+    "guessedTeams": "{number} guessed teams"
   }
 }

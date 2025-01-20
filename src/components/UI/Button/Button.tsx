@@ -55,6 +55,7 @@ const StyledButtonText = styled.p<IStyledButtonTextProps>`
   font-family: Lato, sans-serif;
   font-weight: 500;
   text-align: center;
+  white-space: nowrap;
   color: ${({ state, color }) => (state === 'active' ? (color === 'primary' ? '#090C11' : '#fff') : '#FFFFFF99')};
   font-size: ${({ size }) => (size === 'big' ? '16px' : '14px')};
   line-height: ${({ size }) => (size === 'big' ? '24px' : '18px')};
@@ -65,7 +66,7 @@ export const Button: FC<PropsWithChildren<IButtonProps>> = ({
   color = 'primary',
   state = 'active',
   width,
-  shadow = false,
+  shadow,
   children,
   text,
   ...props

@@ -4,6 +4,13 @@
     "description": "我为 BB 创建的项目",
     "takePart": "参与",
     "homePageTitle": "标题",
-    "homePageDescription": "按照最终排名对球队进行排名，就有机会赢得免费投注！"
+    "homePageDescription": "按照最终排名对球队进行排名，就有机会赢得免费投注！",
+    "prizeFund": "奖金基金",
+    "arrangeTeams": "安排球队",
+    "elite": "精英",
+    "master": "大师",
+    "veteran": "老手",
+    "сommander": "指挥官",
+    "guessedTeams": "{number} 个猜中的球队"
   }
 }

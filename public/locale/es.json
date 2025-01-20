@@ -4,6 +4,13 @@
     "description": "Mi proyecto desarrollado por BB",
     "takePart": "Participar",
     "homePageTitle": "TITULO",
-    "homePageDescription": "¡Clasifica los equipos en el orden en que terminarán y obtén la oportunidad de ganar apuestas gratis!"
+    "homePageDescription": "¡Clasifica los equipos en el orden en que terminarán y obtén la oportunidad de ganar apuestas gratis!",
+    "prizeFund": "Fondo de premios",
+    "arrangeTeams": "Arreglar equipos",
+    "elite": "Elite",
+    "master": "Maestro",
+    "veteran": "Veterano",
+    "сommander": "Comandante",
+    "guessedTeams": "{number} equipos acertados"
   }
 }
