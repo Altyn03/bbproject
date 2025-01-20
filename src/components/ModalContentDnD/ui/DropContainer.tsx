@@ -58,6 +58,20 @@ const DropGridContainer = styled.div`
   display: grid;
   gap: 16px;
   grid-template-columns: repeat(4, 1fr);
+
+  @media (max-width: 1200px) {
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    transform: scale(0.88);
+    max-height: 240px;
+    overflow-y: scroll;
+  }
+  @media (max-width: 650px) {
+    overflow-x: hidden;
+  }
 `;
 const DropGridItem = styled.div`
   display: flex;
@@ -79,11 +93,20 @@ const DropGridItemTwoPlace = styled(DropGridItem)<{ colSpan: number }>`
   grid-column: span ${({ colSpan }) => colSpan};
   width: 402px;
   padding: 16px 77px 24px;
+  @media (max-width: 650px) {
+    width: 100%;
+    padding: 24px;
+  }
 `;
 const DropGridItemFourPlace = styled(DropGridItem)<{ colSpan: number }>`
   grid-column: span ${({ colSpan }) => colSpan};
   width: 818px;
   padding: 20px 34px 24px 14px;
+  @media (max-width: 650px) {
+    width: 100%;
+    padding: 24px;
+    height: 500px;
+  }
 `;
 
 const DropTitlePlaceholder = styled.p`
@@ -100,6 +123,18 @@ const DropPlaceholderDivRow = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
+  @media (max-width: 650px) {
+    justify-content: center;
+    gap: 44px;
+  }
+  @media (max-width: 450px) {
+    justify-content: center;
+    gap: 24px;
+  }
+  @media (max-width: 400px) {
+    justify-content: center;
+    gap: 14px;
+  }
 `;
 
 const LastBlockDropTitlePlaceholder = styled(DropTitlePlaceholder)`
@@ -110,4 +145,12 @@ const LastBlockDropTitlePlaceholder = styled(DropTitlePlaceholder)`
 const LastBlockPlaceholderDivRow = styled.div`
   display: flex;
   gap: 44px;
+  @media (max-width: 1200px) {
+    flex-direction: row;
+    gap: 44px;
+  }
+  @media (max-width: 650px) {
+    flex-direction: column;
+    gap: 24px;
+  }
 `;

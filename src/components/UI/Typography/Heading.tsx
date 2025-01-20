@@ -27,7 +27,7 @@ const StyledHeading = styled.p<{
         case 'h3':
           return '30px';
         case 'h4':
-          return '24px';
+          return '20px';
         case 'h5':
           return '20px';
         case 'h6':
@@ -45,7 +45,7 @@ const StyledHeading = styled.p<{
         case 'h3':
           return '34px';
         case 'h4':
-          return '28px';
+          return '24px';
         case 'h5':
           return '24px';
         case 'h6':

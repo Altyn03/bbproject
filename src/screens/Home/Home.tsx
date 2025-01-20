@@ -338,4 +338,10 @@ const ModalWrapper = styled.div`
   width: 1348px;
   height: 800px;
   box-shadow: 0px 0px 34px 0px rgba(209, 194, 194, 0.6);
+
+  @media (max-width: 1440px) {
+    max-width: 90vw;
+    max-height: 90vh;
+    padding: 32px;
+  }
 `;

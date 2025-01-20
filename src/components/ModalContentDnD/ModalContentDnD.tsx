@@ -146,6 +146,12 @@ const ModalContainer = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 34.5px;
+  @media (max-width: 1200px) {
+    gap: 16px;
+    & > h4 {
+      text-align: center;
+    }
+  }
 `;
 
 const CloseButton = styled(CloseIcon)`
@@ -160,13 +166,22 @@ const CloseButton = styled(CloseIcon)`
   &:hover {
     opacity: 0.7;
   }
+  @media (max-width: 768px) {
+    top: 16px;
+    right: 16px;
+  }
 `;
 
 const DnDContainer = styled.div`
   width: 100%;
   height: 578px;
   display: flex;
+  justify-content: center;
   gap: 16px;
+  @media (max-width: 1200px) {
+    height: 100%;
+    flex-direction: column;
+  }
 `;
 
 const DragContainerWithButton = styled.div`
@@ -174,6 +189,14 @@ const DragContainerWithButton = styled.div`
   flex-direction: column;
   gap: 16px;
   width: 192px;
+  @media (max-width: 1200px) {
+    width: 100%;
+    & > button {
+      align-self: center;
+      width: 240px;
+      height: 40px;
+    }
+  }
 `;
 
 const DragContainer = styled.div`
@@ -186,12 +209,30 @@ const DragContainer = styled.div`
   display: flex;
   overflow-y: scroll;
   height: 530px;
+
+  @media (max-width: 1200px) {
+    height: 170px;
+    padding: 10px;
+    flex-direction: row;
+    overflow-y: hidden;
+  }
 `;
 
 const FooterModalContainer = styled.div`
   width: 100%;
   display: flex;
   gap: 16px;
+  @media (max-width: 1200px) {
+    align-items: center;
+    flex-direction: column;
+    & > div {
+      padding-left: 45px;
+    }
+
+    & > button {
+      max-width: 400px;
+    }
+  }
 `;
 
 const CountChoicesDiv = styled.div`
@@ -212,5 +253,12 @@ const CountChoicesDiv = styled.div`
     display: inline-block;
     font-size: 14px;
     line-height: 18px;
+  }
+
+  @media (max-width: 1200px) {
+    padding: 16px;
+  }
+  @media (max-width: 650px) {
+    padding: 0 16px;
   }
 `;

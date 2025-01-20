@@ -82,6 +82,10 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 4px;
   }
 
+  ::-webkit-scrollbar-corner {
+  background: rgba(0,0,0,0);
+}
+
   &::-webkit-scrollbar-thumb:hover {
     background-color: #a3a3a3;
   }
