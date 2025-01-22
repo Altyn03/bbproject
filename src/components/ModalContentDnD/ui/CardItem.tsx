@@ -19,6 +19,7 @@ export const CardItem = ({ item }: ICardItem) => {
   }));
 
   drag(dragRef);
+
   return (
     <CardTeamContainer isDragging={isDragging} ref={dragRef}>
       <TeamImage imageUrl={item.logo} />
@@ -83,10 +84,21 @@ const CardTeamContainer = styled.div<{ isDragging: boolean }>`
   &:hover::after {
     border-color: #f8e800;
   }
+
+  &:active {
+    opacity: 0.7;
+    &::before,
+    &::after {
+      display: none;
+    }
+    & > p {
+      visibility: hidden;
+    }
+  }
 `;
 
 const TeamImage = styled.div<{ imageUrl: string }>`
-  z-index: 10;
+  z-index: 1;
   width: 80px;
   height: 80px;
   background-image: url(${({ imageUrl }) => `${imageUrl}`});

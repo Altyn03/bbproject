@@ -10,46 +10,27 @@ interface IDropContainer {
 
 export const DropContainer = ({ moveTeam, places }: IDropContainer) => {
   const t = useTranslations('home');
+
+  const renderPlaceholders = (positions: PlacesTeamsObjectKeys[], title: string, colSpan: number) => (
+    <DropGridItem colSpan={colSpan}>
+      <DropTitlePlaceholder isLast={positions.length === 4}>{title}</DropTitlePlaceholder>
+      <PlaceholderRow>
+        {positions.map(position => (
+          <DropPlaceholderElement key={position} moveTeam={moveTeam} places={places} position={position} />
+        ))}
+      </PlaceholderRow>
+    </DropGridItem>
+  );
+  //Оставил это здесь для лучшей наглядности, по хорошему лучше выносить такое
+
   return (
     <DropGridContainer>
-      <DropGridItemOnePlace colSpan={1}>
-        <DropTitlePlaceholder>{t('singlePlace', { place: 1 })}</DropTitlePlaceholder>
-        <DropPlaceholderElement moveTeam={moveTeam} places={places} position={1} />
-      </DropGridItemOnePlace>
-      <DropGridItemOnePlace colSpan={1}>
-        <DropTitlePlaceholder>{t('singlePlace', { place: 2 })}</DropTitlePlaceholder>
-        <DropPlaceholderElement moveTeam={moveTeam} places={places} position={2} />
-      </DropGridItemOnePlace>
-      <DropGridItemTwoPlace colSpan={2}>
-        <DropTitlePlaceholder>{t('multiplePlaces', { place: '3-4' })}</DropTitlePlaceholder>
-        <DropPlaceholderDivRow>
-          <DropPlaceholderElement moveTeam={moveTeam} places={places} position={3} />
-          <DropPlaceholderElement moveTeam={moveTeam} places={places} position={4} />
-        </DropPlaceholderDivRow>
-      </DropGridItemTwoPlace>
-      <DropGridItemTwoPlace colSpan={2}>
-        <DropTitlePlaceholder>{t('multiplePlaces', { place: '5-6' })}</DropTitlePlaceholder>
-        <DropPlaceholderDivRow>
-          <DropPlaceholderElement moveTeam={moveTeam} places={places} position={5} />
-          <DropPlaceholderElement moveTeam={moveTeam} places={places} position={6} />
-        </DropPlaceholderDivRow>
-      </DropGridItemTwoPlace>
-      <DropGridItemTwoPlace colSpan={2}>
-        <DropTitlePlaceholder>{t('multiplePlaces', { place: '7-8' })}</DropTitlePlaceholder>
-        <DropPlaceholderDivRow>
-          <DropPlaceholderElement moveTeam={moveTeam} places={places} position={7} />
-          <DropPlaceholderElement moveTeam={moveTeam} places={places} position={8} />
-        </DropPlaceholderDivRow>
-      </DropGridItemTwoPlace>
-      <DropGridItemFourPlace colSpan={4}>
-        <LastBlockDropTitlePlaceholder>{t('multiplePlaces', { place: '9-12' })}</LastBlockDropTitlePlaceholder>
-        <LastBlockPlaceholderDivRow>
-          <DropPlaceholderElement moveTeam={moveTeam} places={places} position={9} />
-          <DropPlaceholderElement moveTeam={moveTeam} places={places} position={10} />
-          <DropPlaceholderElement moveTeam={moveTeam} places={places} position={11} />
-          <DropPlaceholderElement moveTeam={moveTeam} places={places} position={12} />
-        </LastBlockPlaceholderDivRow>
-      </DropGridItemFourPlace>
+      {renderPlaceholders([1], t('singlePlace', { place: 1 }), 1)}
+      {renderPlaceholders([2], t('singlePlace', { place: 2 }), 1)}
+      {renderPlaceholders([3, 4], t('multiplePlaces', { place: '3-4' }), 2)}
+      {renderPlaceholders([5, 6], t('multiplePlaces', { place: '5-6' }), 2)}
+      {renderPlaceholders([7, 8], t('multiplePlaces', { place: '7-8' }), 2)}
+      {renderPlaceholders([9, 10, 11, 12], t('multiplePlaces', { place: '9-12' }), 4)}
     </DropGridContainer>
   );
 };
@@ -73,84 +54,51 @@ const DropGridContainer = styled.div`
     overflow-x: hidden;
   }
 `;
-const DropGridItem = styled.div`
+
+const DropGridItem = styled.div<{ colSpan: number }>`
+  grid-column: span ${({ colSpan }) => colSpan};
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   background-color: #5658644d;
   border-radius: 8px;
-  gap: 20px;
   height: 182px;
-`;
+  gap: 20px;
+  width: ${({ colSpan }) => (colSpan === 1 ? '192px' : colSpan === 2 ? '402px' : '818px')};
+  padding: ${({ colSpan }) =>
+    colSpan === 1 ? '16px 36px 24px' : colSpan === 2 ? '16px 77px 24px' : '20px 34px 24px 14px'};
 
-const DropGridItemOnePlace = styled(DropGridItem)<{ colSpan: number }>`
-  grid-column: span ${({ colSpan }) => colSpan};
-  width: 192px;
-  padding: 16px 36px 24px;
-`;
-const DropGridItemTwoPlace = styled(DropGridItem)<{ colSpan: number }>`
-  grid-column: span ${({ colSpan }) => colSpan};
-  width: 402px;
-  padding: 16px 77px 24px;
   @media (max-width: 650px) {
     width: 100%;
     padding: 24px;
-  }
-`;
-const DropGridItemFourPlace = styled(DropGridItem)<{ colSpan: number }>`
-  grid-column: span ${({ colSpan }) => colSpan};
-  width: 818px;
-  padding: 20px 34px 24px 14px;
-  @media (max-width: 650px) {
-    width: 100%;
-    padding: 24px;
-    height: 500px;
+    height: ${({ colSpan }) => (colSpan === 4 ? '270px' : 'auto')};
   }
 `;
 
-const DropTitlePlaceholder = styled.p`
-  font-size: 18px;
-  line-height: 22px;
+const DropTitlePlaceholder = styled.p<{ isLast?: boolean }>`
   font-family: Lato, sans-serif;
   font-weight: 500;
   text-align: center;
   color: #ffffff99;
   user-select: none;
+  font-size: ${({ isLast }) => (isLast ? '20px' : '18px')};
+  line-height: ${({ isLast }) => (isLast ? '24px' : '20px')};
 `;
 
-const DropPlaceholderDivRow = styled.div`
+const PlaceholderRow = styled.div`
   display: flex;
   width: 100%;
-  justify-content: space-between;
-  @media (max-width: 650px) {
-    justify-content: center;
-    gap: 44px;
-  }
-  @media (max-width: 450px) {
-    justify-content: center;
-    gap: 24px;
-  }
-  @media (max-width: 400px) {
-    justify-content: center;
-    gap: 14px;
-  }
-`;
-
-const LastBlockDropTitlePlaceholder = styled(DropTitlePlaceholder)`
-  font-size: 20px;
-  line-height: 24px;
-`;
-
-const LastBlockPlaceholderDivRow = styled.div`
-  display: flex;
+  justify-content: center;
   gap: 44px;
-  @media (max-width: 1200px) {
-    flex-direction: row;
-    gap: 44px;
-  }
+
   @media (max-width: 650px) {
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 24px;
+  }
+
+  @media (max-width: 450px) {
+    gap: 16px;
   }
 `;
