@@ -4,6 +4,7 @@ import { Button } from '@/components/UI/Button';
 import { Modal } from '@/components/UI/Modal';
 import { Heading } from '@/components/UI/Typography';
 import { useModal } from '@/hooks/useModal';
+import { ParallaxEffect } from '@/styles/ParallaxEffect';
 import { useTranslations } from 'next-intl';
 import styled from 'styled-components';
 
@@ -13,49 +14,51 @@ export const Home = () => {
 
   return (
     <main>
-      <BannerContainer>
-        <TitleContainer>
-          <TitleDescription>
-            <Heading variant='h1' fontWeight={700}>
-              {t('homePageTitle')}
-            </Heading>
-            <Heading variant='h5' fontWeight={700} fontFamily='Open Sans, sans-serif'>
-              {t('homePageDescription')}
-            </Heading>
-          </TitleDescription>
-          <Button size='big' color='primary' width='242px' text={t('takePart')} />
-        </TitleContainer>
-        <BannerBgDark />
-        <BannerBgImageLeft />
-        <BannerImageContent />
-        <BannerBgImageRight />
-      </BannerContainer>
-      <MainContent>
-        <MainContentFlashImage />
-        <MainContentAwpImage />
-        <MainContentPachkaImage />
-        <PrizeFund />
-        <ContainerGradientWithButton>
-          <LargeGradientDiv />
-          <SmallGradientDiv />
-          <ButtonContainer>
-            <Button
-              size='big'
-              color='primary'
-              shadow
-              width='242px'
-              text={t('arrangeTeams')}
-              state='active'
-              onClick={toggleModal}
-            />
-            <Modal isOpen={isOpenModal} toggleModal={toggleModal}>
-              <ModalWrapper>
-                <ModalContentDnD closeModal={closeModal} />
-              </ModalWrapper>
-            </Modal>
-          </ButtonContainer>
-        </ContainerGradientWithButton>
-      </MainContent>
+      <ParallaxEffect>
+        <BannerContainer>
+          <TitleContainer>
+            <TitleDescription>
+              <Heading variant='h1' fontWeight={700}>
+                {t('homePageTitle')}
+              </Heading>
+              <Heading variant='h5' fontWeight={700} fontFamily='Open Sans, sans-serif'>
+                {t('homePageDescription')}
+              </Heading>
+            </TitleDescription>
+            <Button size='big' color='primary' width='242px' text={t('takePart')} />
+          </TitleContainer>
+          <BannerBgDark />
+          <BannerBgImageLeft />
+          <BannerImageContent />
+          <BannerBgImageRight />
+        </BannerContainer>
+        <MainContent>
+          <MainContentFlashImage className='parallax-item' />
+          <MainContentAwpImage className='parallax-item' />
+          <MainContentPachkaImage className='parallax-item' />
+          <PrizeFund />
+          <ContainerGradientWithButton>
+            <LargeGradientDiv />
+            <SmallGradientDiv />
+            <ButtonContainer>
+              <Button
+                size='big'
+                color='primary'
+                shadow
+                width='242px'
+                text={t('arrangeTeams')}
+                state='active'
+                onClick={toggleModal}
+              />
+              <Modal isOpen={isOpenModal} toggleModal={toggleModal}>
+                <ModalWrapper>
+                  <ModalContentDnD closeModal={closeModal} />
+                </ModalWrapper>
+              </Modal>
+            </ButtonContainer>
+          </ContainerGradientWithButton>
+        </MainContent>
+      </ParallaxEffect>
     </main>
   );
 };
@@ -210,6 +213,9 @@ const MainContentFlashImage = styled.div`
   height: 420px;
   z-index: 1;
 
+  will-change: transform;
+  transition: transform 0.1 ease-in-out;
+
   @media (max-width: 1024px) {
     width: 220px;
     height: 220px;
@@ -233,6 +239,9 @@ const MainContentAwpImage = styled.div`
   height: 500px;
   z-index: 1;
 
+  will-change: transform;
+  transition: transform 0.1 ease-in-out;
+
   @media (max-width: 1024px) {
     width: 300px;
     height: 300px;
@@ -252,6 +261,9 @@ const MainContentPachkaImage = styled.div`
   width: 654px;
   height: 623px;
   z-index: 1;
+
+  will-change: transform;
+  transition: transform 0.1 ease-in-out;
 
   @media (max-width: 1024px) {
     width: 454px;
@@ -319,12 +331,6 @@ const SmallGradientDiv = styled.div`
   border-radius: 50%;
   background: radial-gradient(circle, #48484c 0%, transparent 70%, transparent 100%);
 `;
-// const WhiteBgDiv = styled.div`
-//   width: 100%;
-//   height: 100%;
-//   background-color: #00000066;
-//   z-index: 2;
-// `;
 
 const ButtonContainer = styled.div`
   z-index: 3;
