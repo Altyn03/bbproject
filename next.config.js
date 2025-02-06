@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
+
+const path = require('path');
+
 const nextConfig = {
   reactStrictMode: true,
   compiler: {
@@ -14,7 +17,12 @@ const nextConfig = {
     defaultLocale: 'default',
     localeDetection: false,
   },
-  webpack(config, { isServer }) {
+  webpack: config => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@public': path.resolve(__dirname, 'public'),
+    };
+
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],
