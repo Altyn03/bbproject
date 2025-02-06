@@ -4,19 +4,25 @@ import styled from 'styled-components';
 import { DropPlaceholderElement } from '../DropPlaceholderElement';
 
 interface IDropContainer {
-  moveTeam: (team: TTeams, position: PlacesTeamsObjectKeys) => void;
+  onMoveTeamHandler: (team: TTeams, position: PlacesTeamsObjectKeys) => void;
   places: TPlacesTeams;
 }
 
-export const DropContainer = ({ moveTeam, places }: IDropContainer) => {
+export const DropContainer = ({ onMoveTeamHandler, places }: IDropContainer) => {
   const t = useTranslations('home');
 
   const renderPlaceholders = (positions: PlacesTeamsObjectKeys[], title: string, colSpan: number) => (
     <DropGridItem colSpan={colSpan}>
       <DropTitlePlaceholder isLast={positions.length === 4}>{title}</DropTitlePlaceholder>
+
       <PlaceholderRow>
         {positions.map(position => (
-          <DropPlaceholderElement key={position} moveTeam={moveTeam} places={places} position={position} />
+          <DropPlaceholderElement
+            key={position}
+            onMoveTeamHandler={onMoveTeamHandler}
+            places={places}
+            position={position}
+          />
         ))}
       </PlaceholderRow>
     </DropGridItem>
@@ -40,13 +46,15 @@ const DropGridContainer = styled.div`
   grid-template-columns: repeat(4, 1fr);
 
   @media (max-width: 1200px) {
-    max-width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
-    transform: scale(0.88);
+
+    max-width: 100%;
     max-height: 240px;
+
+    transform: scale(0.88);
     overflow-y: scroll;
   }
   @media (max-width: 650px) {
@@ -60,13 +68,15 @@ const DropGridItem = styled.div<{ colSpan: number }>`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #5658644d;
-  border-radius: 8px;
-  height: 182px;
   gap: 20px;
+
+  height: 182px;
   width: ${({ colSpan }) => (colSpan === 1 ? '192px' : colSpan === 2 ? '402px' : '818px')};
   padding: ${({ colSpan }) =>
     colSpan === 1 ? '16px 36px 24px' : colSpan === 2 ? '16px 77px 24px' : '20px 34px 24px 14px'};
+
+  background-color: #5658644d;
+  border-radius: 8px;
 
   @media (max-width: 650px) {
     width: 100%;

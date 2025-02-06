@@ -8,7 +8,7 @@ export const PrizeFundWidget = () => {
 
   return (
     <PrizeFundDiv>
-      <Heading variant='h2' style={{ textAlign: 'center' }} fontWeight={700}>
+      <Heading variant='h2' textAlign='center' fontWeight={700}>
         {t('prizeFund')}
       </Heading>
 
@@ -23,6 +23,7 @@ const PrizeFundDiv = styled.div`
   gap: 48px;
   align-items: center;
   z-index: 2;
+
   max-width: 1288px;
   padding: 0 24px;
 `;

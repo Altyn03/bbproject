@@ -8,7 +8,7 @@ import styled from 'styled-components';
 export const PositionTeamModalWidget = () => {
   const t = useTranslations('home');
 
-  const { isOpenModal, toggleModal, closeModal } = useModal();
+  const { isOpenModal, onToggleModalHandler, onCloseModalHandler } = useModal();
 
   return (
     <ContainerGradientWithButton>
@@ -23,12 +23,12 @@ export const PositionTeamModalWidget = () => {
           width='242px'
           text={t('arrangeTeams')}
           state='active'
-          onClick={toggleModal}
+          onClick={onToggleModalHandler}
         />
 
-        <Modal isOpen={isOpenModal} toggleModal={toggleModal}>
+        <Modal isOpen={isOpenModal} onToggleModalHandler={onToggleModalHandler}>
           <ModalWrapper>
-            <ModalContentDnD closeModal={closeModal} />
+            <ModalContentDnD onCloseModalHandler={onCloseModalHandler} />
           </ModalWrapper>
         </Modal>
       </ButtonContainer>
@@ -38,17 +38,19 @@ export const PositionTeamModalWidget = () => {
 
 const ContainerGradientWithButton = styled.div`
   position: relative;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
+
   width: 602px;
   height: 236px;
   border-radius: 8px;
+  overflow: hidden;
+
+  background-color: #27282ee5;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  background-color: #27282ee5;
-  z-index: 1;
 
   &::before {
     content: '';
@@ -57,6 +59,7 @@ const ContainerGradientWithButton = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
+
     background-image: url(/images/BgNoize.png);
     background-size: cover;
     background-position: center;
@@ -75,9 +78,11 @@ const LargeGradientDiv = styled.div`
   z-index: 2;
   top: -165px;
   left: -227px;
+
   width: 675px;
   height: 675px;
   border-radius: 50%;
+
   background: radial-gradient(circle, #48484c 0%, transparent 70%, transparent 100%);
 `;
 const SmallGradientDiv = styled.div`
@@ -85,9 +90,11 @@ const SmallGradientDiv = styled.div`
   z-index: 2;
   top: -241px;
   right: -226px;
+
   width: 556px;
   height: 556px;
   border-radius: 50%;
+
   background: radial-gradient(circle, #48484c 0%, transparent 70%, transparent 100%);
 `;
 
@@ -96,12 +103,14 @@ const ButtonContainer = styled.div`
 `;
 
 const ModalWrapper = styled.div`
-  background-color: #16171c;
   position: relative;
-  padding: 32px 160px;
-  border-radius: 10px;
+
   width: 1348px;
   height: 800px;
+  padding: 32px 160px;
+  border-radius: 10px;
+
+  background-color: #16171c;
   box-shadow: 0px 0px 34px 0px rgba(209, 194, 194, 0.6);
 
   @media (max-width: 1440px) {

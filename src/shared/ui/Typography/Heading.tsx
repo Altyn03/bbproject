@@ -9,12 +9,15 @@ const StyledHeading = styled.p<{
   fontWeight?: number;
   fontFamily?: string;
   userSelect?: boolean;
+  textAlign?: string;
 }>`
   color: ${({ color }) => color || '#fff'};
   font-weight: ${({ fontWeight }) => fontWeight || 500};
   font-family: ${({ fontFamily }) => fontFamily || 'Roboto, sans-serif'};
-  ${({ userSelect }) => userSelect && 'user-select: none;'}
+  text-align: ${({ textAlign }) => textAlign || 'left'};
   ${({ ellipsis }) => ellipsis && 'text-overflow: ellipsis; white-space: nowrap; overflow: hidden;'}
+
+  ${({ userSelect }) => userSelect && 'user-select: none;'}
 
   @media (max-width: 768px) {
     font-size: ${({ variant }) => {
@@ -140,6 +143,7 @@ export const Heading: FC<IHeadingProps> = ({
   ellipsis,
   fontWeight,
   fontFamily,
+  textAlign,
   as: Component = variant,
 }) => {
   return (
@@ -149,6 +153,7 @@ export const Heading: FC<IHeadingProps> = ({
       color={color}
       style={style}
       ellipsis={ellipsis}
+      textAlign={textAlign}
       fontWeight={fontWeight}
       fontFamily={fontFamily}>
       {children}

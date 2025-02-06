@@ -16,26 +16,21 @@ import styled from 'styled-components';
 import { initialStatePlaces } from '../lib/constans';
 
 interface IModalContentDnDProps {
-  closeModal: () => void;
+  onCloseModalHandler: () => void;
 }
 
-export const ModalContentDnD = ({ closeModal }: IModalContentDnDProps) => {
+export const ModalContentDnD = ({ onCloseModalHandler }: IModalContentDnDProps) => {
   const t = useTranslations('home');
+
   const [confirmed, setConfirmed] = useState<boolean>(false);
   const [dragItems, setDragItems] = useState<TTeams[]>([]);
   const [places, setPlaces] = useState<TPlacesTeams>(initialStatePlaces);
 
-  const moveTeam = (team: TTeams, position: PlacesTeamsObjectKeys) => {
-    setPlaces(prev => {
-      if (prev[position]) return prev;
-      const newPlaces = { ...prev, [position]: team };
-      setDragItems(prevDragItems => prevDragItems.filter(el => el.id !== team.id));
-      return newPlaces;
-    });
-  };
-
   const isConfirmed = typeof window !== 'undefined' && localStorage.getItem('isConfirmed') === 'true';
   const localStoragePlaces = typeof window !== 'undefined' && localStorage.getItem('places');
+
+  const allCount = Object.keys(places).length;
+  const currentChoices = Object.values(places).filter(el => el !== null).length;
 
   useEffect(() => {
     if (isConfirmed && localStoragePlaces) {
@@ -47,31 +42,45 @@ export const ModalContentDnD = ({ closeModal }: IModalContentDnDProps) => {
     }
   }, []);
 
-  const allCount = Object.keys(places).length;
-  const currentChoices = Object.values(places).filter(el => el !== null).length;
+  const onMoveTeamHandler = (team: TTeams, position: PlacesTeamsObjectKeys) => {
+    setPlaces(prev => {
+      if (prev[position]) return prev;
+      const newPlaces = { ...prev, [position]: team };
 
-  const handleConfirm = () => {
+      setDragItems(prevDragItems => prevDragItems.filter(el => el.id !== team.id));
+
+      return newPlaces;
+    });
+  };
+
+  const onClickConfirmHandler = () => {
     setConfirmed(true);
+
     localStorage.setItem('isConfirmed', 'true');
     localStorage.setItem('places', JSON.stringify(places));
   };
 
-  const handleEditRanking = () => {
+  const onClickEditHandler = () => {
     setConfirmed(false);
+
     localStorage.removeItem('isConfirmed');
     localStorage.removeItem('places');
+
     setDragItems(teamsMockData);
     setPlaces(initialStatePlaces);
   };
 
-  const handleRandomSelection = () => {
+  const onClickRandomSelectionHandler = () => {
     if (confirmed) return;
 
     setPlaces(initialStatePlaces);
+
     const shuffledKeys = Object.keys(places)
       .sort(() => Math.random() - 0.5)
       .map(key => +key);
+
     const result: TPlacesTeams = { ...initialStatePlaces };
+
     shuffledKeys.forEach((key, index) => {
       result[key as PlacesTeamsObjectKeys] = teamsMockData[index];
     });
@@ -85,7 +94,9 @@ export const ModalContentDnD = ({ closeModal }: IModalContentDnDProps) => {
       <Heading variant='h4' fontWeight={500} fontFamily='Roboto, sans-serif'>
         {t('selectPlace')}
       </Heading>
-      <CloseButton onClick={closeModal} />
+
+      <CloseButton onClick={onCloseModalHandler} />
+
       <DndProvider backend={HTML5Backend}>
         <DnDContainer>
           <DragContainerWithButton>
@@ -94,35 +105,41 @@ export const ModalContentDnD = ({ closeModal }: IModalContentDnDProps) => {
                 <CardItem key={item.id} item={item} />
               ))}
             </DragContainer>
+
             <Button
               size='small'
               color='secondary'
               state={confirmed ? 'disabled' : 'active'}
               text={t('randomSelection')}
-              onClick={handleRandomSelection}
+              onClick={onClickRandomSelectionHandler}
             />
           </DragContainerWithButton>
-          <DropContainer moveTeam={moveTeam} places={places} />
+
+          <DropContainer onMoveTeamHandler={onMoveTeamHandler} places={places} />
         </DnDContainer>
       </DndProvider>
+
       <FooterModalContainer>
         <CountChoicesDiv>
-          <span>{t('selected')}</span>
+          <CountChoicesTitle>{t('selected')}</CountChoicesTitle>
+
           <p>{currentChoices + '/' + allCount}</p>
         </CountChoicesDiv>
+
         <Button
           size='big'
           color='secondary'
           state={confirmed ? 'active' : 'inactive'}
           text={t('edit')}
-          onClick={handleEditRanking}
+          onClick={onClickEditHandler}
         />
+
         <Button
           size='big'
           color='primary'
           state={allCount === currentChoices && !confirmed ? 'active' : 'disabled'}
           text={t('confirmSelection')}
-          onClick={handleConfirm}
+          onClick={onClickConfirmHandler}
         />
       </FooterModalContainer>
     </ModalContainer>
@@ -130,12 +147,14 @@ export const ModalContentDnD = ({ closeModal }: IModalContentDnDProps) => {
 };
 
 const ModalContainer = styled.div`
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 34.5px;
+
+  width: 100%;
+  height: 100%;
+
   @media (max-width: 1200px) {
     gap: 16px;
     & > h4 {
@@ -145,14 +164,16 @@ const ModalContainer = styled.div`
 `;
 
 const CloseButton = styled(CloseIcon)`
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
   position: absolute;
   top: 34px;
   right: 34px;
 
+  width: 20px;
+  height: 20px;
+
+  cursor: pointer;
   transition: opacity 0.4s ease-in-out;
+
   &:hover {
     opacity: 0.7;
   }
@@ -163,14 +184,16 @@ const CloseButton = styled(CloseIcon)`
 `;
 
 const DnDContainer = styled.div`
-  width: 100%;
-  height: 578px;
   display: flex;
   justify-content: center;
   gap: 16px;
+
+  width: 100%;
+  height: 578px;
+
   @media (max-width: 1200px) {
-    height: 100%;
     flex-direction: column;
+    height: 100%;
   }
 `;
 
@@ -178,11 +201,15 @@ const DragContainerWithButton = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+
   width: 192px;
+
   @media (max-width: 1200px) {
     width: 100%;
+
     & > button {
       align-self: center;
+
       width: 240px;
       height: 40px;
     }
@@ -190,31 +217,37 @@ const DragContainerWithButton = styled.div`
 `;
 
 const DragContainer = styled.div`
+  display: flex;
   flex-direction: column;
-  gap: 4px;
   align-items: center;
+  gap: 4px;
+
+  height: 530px;
+  padding: 18px 16px;
   border-radius: 8px;
   border: 4px solid #27272b;
-  padding: 18px 16px;
-  display: flex;
+
   overflow-y: scroll;
-  height: 530px;
 
   @media (max-width: 1200px) {
+    flex-direction: row;
+
     height: 170px;
     padding: 10px;
-    flex-direction: row;
     overflow-y: hidden;
   }
 `;
 
 const FooterModalContainer = styled.div`
-  width: 100%;
   display: flex;
   gap: 16px;
+
+  width: 100%;
+
   @media (max-width: 1200px) {
     align-items: center;
     flex-direction: column;
+
     & > div {
       padding-left: 45px;
     }
@@ -226,29 +259,32 @@ const FooterModalContainer = styled.div`
 `;
 
 const CountChoicesDiv = styled.div`
-  min-width: 192px;
   display: flex;
+  align-items: flex-end;
   gap: 10px;
+
+  min-width: 192px;
   padding: 16px 38px 16px 32px;
+
   font-family: Lato, sans-serif;
   font-weight: 500;
   color: #ffffff;
-  align-items: flex-end;
 
   & > p {
     font-size: 20px;
     line-height: 24px;
   }
-  & > span {
-    display: inline-block;
-    font-size: 14px;
-    line-height: 18px;
-  }
 
   @media (max-width: 1200px) {
     padding: 16px;
   }
+
   @media (max-width: 650px) {
     padding: 0 16px;
   }
+`;
+
+const CountChoicesTitle = styled.p`
+  font-size: 14px;
+  line-height: 18px;
 `;

@@ -17,14 +17,13 @@ export const Card = ({ cardData }: { cardData: TCard }) => {
           {t('guessedTeams', { number: cardData.count })}
         </Heading>
 
-        <Heading
-          variant='h3'
-          fontWeight={700}
-          fontFamily='Gilroy-Medium, sans-serif'
-          style={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
-          {cardData.prize}
+        <PrizeDiv>
+          <Heading variant='h3' fontWeight={700} fontFamily='Gilroy-Medium, sans-serif'>
+            {cardData.prize}
+          </Heading>
+
           <FreebetIcon />
-        </Heading>
+        </PrizeDiv>
       </CardDescription>
     </CardContainer>
   );
@@ -33,15 +32,18 @@ export const Card = ({ cardData }: { cardData: TCard }) => {
 const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 27.5px;
   align-items: center;
+  gap: 27.5px;
+
   width: 298px;
   height: 360px;
   border-radius: 8px;
   padding: 24px 32px;
+
   background-color: #5658644d;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+
   user-select: none;
 
   @media (max-width: 768px) {
@@ -49,16 +51,18 @@ const CardContainer = styled.div`
   }
 `;
 
-const StyledBadge = styled.span`
-  display: inline-flex;
+const StyledBadge = styled.p`
+  position: relative;
+  display: flex;
   align-items: center;
   justify-content: center;
+
   padding: 6px 8px 8px;
   width: fit-content;
   height: 39px;
-  background: transparent;
 
-  position: relative;
+  background: linear-gradient(90deg, #fb7c12 0%, #faa709 100%);
+
   &::before {
     content: '';
     position: absolute;
@@ -66,8 +70,10 @@ const StyledBadge = styled.span`
     left: 0;
     right: 0;
     bottom: 0;
+
     border-radius: 6px;
     padding: 2px;
+
     background-image: linear-gradient(90deg, #fb7c12 0%, #faa709 100%);
     mask:
       linear-gradient(#000 0 0) content-box,
@@ -75,23 +81,22 @@ const StyledBadge = styled.span`
     mask-composite: exclude;
   }
 
+  color: transparent;
   font-family: 'Gilroy-Medium', sans-serif;
   font-size: 22px;
   line-height: 26.69px;
   font-weight: 500;
   letter-spacing: 0.26px;
-
-  background: linear-gradient(90deg, #fb7c12 0%, #faa709 100%);
   -webkit-background-clip: text;
   background-clip: text;
-  color: transparent;
 `;
 
 const CardImage = styled.div<{ imageUrl: string }>`
-  background-image: ${({ imageUrl }) => `url(${imageUrl})`};
-  border-radius: 7px;
   width: 231px;
   height: 150px;
+  border-radius: 7px;
+
+  background-image: ${({ imageUrl }) => `url(${imageUrl})`};
 `;
 
 const CardDescription = styled.div`
@@ -99,5 +104,12 @@ const CardDescription = styled.div`
   flex-direction: column;
   gap: 4px;
   align-items: center;
+
   width: object-fit;
+`;
+
+const PrizeDiv = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
 `;

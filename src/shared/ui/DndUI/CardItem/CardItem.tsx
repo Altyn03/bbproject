@@ -21,21 +21,28 @@ export const CardItem = ({ item }: ICardItem) => {
   drag(dragRef);
 
   return (
-    <CardTeamContainer isDragging={isDragging} ref={dragRef}>
+    <CardTeamContainer ref={dragRef} isDragging={isDragging}>
       <TeamImage imageUrl={item.logo} />
+
       <p>{item.name}</p>
     </CardTeamContainer>
   );
 };
 
 const CardTeamContainer = styled.div<{ isDragging: boolean }>`
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 4px;
+
   padding: 11px 20px;
-  position: relative;
+
+  opacity: 0.6;
+  transition: opacity 0.2s ease-in-out;
+
   user-select: none;
   cursor: ${({ isDragging }) => (isDragging ? 'grabbing' : 'grab')};
+
   &:active {
     cursor: grabbing;
   }
@@ -49,8 +56,6 @@ const CardTeamContainer = styled.div<{ isDragging: boolean }>`
     text-align: center;
   }
 
-  opacity: 0.6;
-  transition: opacity 0.2s ease-in-out;
   &:hover {
     opacity: 1;
   }
@@ -59,14 +64,17 @@ const CardTeamContainer = styled.div<{ isDragging: boolean }>`
   &::after {
     content: '';
     position: absolute;
+
     width: 20px;
     height: 20px;
+
     transition: all 0.4s ease;
   }
 
   &::before {
     top: 0;
     left: 0;
+
     border-top: 2px solid transparent;
     border-left: 2px solid transparent;
   }
@@ -74,6 +82,7 @@ const CardTeamContainer = styled.div<{ isDragging: boolean }>`
   &::after {
     bottom: 0;
     right: 0;
+
     border-bottom: 2px solid transparent;
     border-right: 2px solid transparent;
   }
@@ -98,9 +107,9 @@ const CardTeamContainer = styled.div<{ isDragging: boolean }>`
 `;
 
 const TeamImage = styled.div<{ imageUrl: string }>`
-  z-index: 1;
   width: 80px;
   height: 80px;
+
   background-image: url(${({ imageUrl }) => `${imageUrl}`});
   background-size: cover;
   background-position: center;

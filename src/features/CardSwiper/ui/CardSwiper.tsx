@@ -55,6 +55,7 @@ export const CardSwiper = () => {
 
 const SwiperContainer = styled.div`
   position: relative;
+
   max-width: 1240px;
 
   @media (max-width: 1440px) {
@@ -71,11 +72,14 @@ const SwiperContainer = styled.div`
 const NavigationButton = styled.div`
   position: absolute;
   top: 42%;
-  cursor: pointer;
+  z-index: 2;
+
   width: 54px;
   height: 54px;
-  z-index: 2;
+
+  cursor: pointer;
   transition: all 0.2s ease-in-out;
+
   &:hover {
     opacity: 0.7;
   }

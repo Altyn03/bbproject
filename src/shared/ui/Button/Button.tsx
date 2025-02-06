@@ -16,21 +16,23 @@ const StyledButton = styled.button<IStyledButtonProps>`
   padding: ${({ size }) => buttonPaddings[size] || buttonPaddings.big};
   width: ${({ width }) => width || '100%'};
   ${({ size }) => size === 'big' && `height: 60px;`};
+  border-radius: 4px;
+  ${({ state }) => state === 'inactive' && 'border: 2px solid #27282EE5;'};
+
   background-color: ${({ color, state }) =>
     state === 'disabled'
       ? '#27282EE5'
       : state === 'inactive'
         ? 'transparent'
         : buttonColors[color] || buttonColors.primary};
-
-  ${({ state }) => state === 'inactive' && 'border: 2px solid #27282EE5;'};
-  border-radius: 4px;
-  cursor: ${({ state }) => (state === 'active' ? 'pointer' : 'not-allowed')};
-  user-select: none;
-
   ${({ shadow }) => shadow && `box-shadow: 0px 0px 34px 0px rgba(0, 0, 0, 0.6);`}
 
-  transition: box-shadow 0.4s ease-in-out, background-color 0.4s ease-in-out;
+  cursor: ${({ state }) => (state === 'active' ? 'pointer' : 'not-allowed')};
+  user-select: none;
+  transition:
+    box-shadow 0.4s ease-in-out,
+    background-color 0.4s ease-in-out;
+
   &:hover {
     ${({ state, color }) =>
       state === 'active' &&

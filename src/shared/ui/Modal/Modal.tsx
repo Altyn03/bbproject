@@ -6,14 +6,14 @@ import styled from 'styled-components';
 interface IModalProps {
   children: ReactNode;
   isOpen: boolean;
-  toggleModal: () => void;
+  onToggleModalHandler: () => void;
 }
 
-export const Modal: FC<IModalProps> = ({ children, isOpen, toggleModal }) => {
+export const Modal: FC<IModalProps> = ({ children, isOpen, onToggleModalHandler }) => {
   const modalRef = useRef<HTMLDivElement | null>(null);
   const [portalElement, setPortalElement] = useState<Element | null>(null);
 
-  useOutsideClick(modalRef, toggleModal);
+  useOutsideClick(modalRef, onToggleModalHandler);
 
   useEffect(() => {
     if (modalRef.current) {
@@ -42,15 +42,17 @@ export const Modal: FC<IModalProps> = ({ children, isOpen, toggleModal }) => {
 
 const Backdrop = styled.div`
   position: fixed;
-  width: 100vw;
-  height: 100vh;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 10;
+
+  width: 100vw;
+  height: 100vh;
+
+  background: rgba(0, 0, 0, 0.6);
 `;

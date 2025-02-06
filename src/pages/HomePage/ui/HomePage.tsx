@@ -27,11 +27,12 @@ export const HomePage = () => {
 };
 
 const MainContent = styled.section`
-  display: flex;
   position: relative;
+  display: flex;
   flex-direction: column;
   align-items: center;
   gap: 84px;
+  
   padding: 87px 0 480px;
   
   @media (max-width: 1024px) {

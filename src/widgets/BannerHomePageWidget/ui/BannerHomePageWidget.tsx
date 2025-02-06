@@ -32,14 +32,16 @@ export const BannerHomePageWidget = () => {
 
 const BannerContainer = styled.section`
   position: relative;
-  overflow: hidden;
   display: flex;
   align-items: center;
+  z-index: 0;
+
   padding: 186px 200px;
   width: 100%;
   height: 655px;
+  overflow: hidden;
+
   background-color: #2d2929;
-  z-index: 0;
 
   &::before {
     content: '';
@@ -48,6 +50,7 @@ const BannerContainer = styled.section`
     left: 0;
     right: 0;
     bottom: 0;
+
     background-image: url(/images/BannerMainBg.png);
     background-size: cover;
     background-position: center;
@@ -67,13 +70,15 @@ const BannerImageContent = styled.div`
   position: absolute;
   top: -20px;
   right: 100px;
+  z-index: 1;
+
+  width: 907px;
+  height: 698px;
+
   background-image: url(/images/BannerImage.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  width: 907px;
-  height: 698px;
-  z-index: 1;
 
   @media (max-width: 1024px) {
     display: none;
@@ -84,12 +89,14 @@ const BannerBgImageLeft = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+  z-index: -1;
+
+  width: 568px;
+  height: 302px;
+
   background-image: url(/images/BannerBGLeft.svg);
   background-size: cover;
   background-repeat: no-repeat;
-  width: 568px;
-  height: 302px;
-  z-index: -1;
 
   @media (max-width: 768px) {
     width: 468px;
@@ -105,38 +112,44 @@ const BannerBgImageRight = styled.div`
   position: absolute;
   top: 0;
   right: 0;
+  z-index: -1;
+
+  width: 1419px;
+  height: 655px;
+
   background-image: url(/images/BannerBGRight.svg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  width: 1419px;
-  height: 655px;
-  z-index: -1;
 
   @media (max-width: 1024px) {
     display: none;
   }
 `;
+
 const BannerBgDark = styled.div`
   position: absolute;
   top: 0;
   right: 0;
+  z-index: -1;
+
+  width: 1920px;
+  height: 655px;
+
   background-image: url(/images/BannerBGDark.svg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  width: 1920px;
-  height: 655px;
-  z-index: -1;
 `;
 
 const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
+  z-index: 2;
+
   max-width: 666px;
   max-height: 282px;
-  z-index: 2;
 
   @media (max-width: 440px) {
     text-align: center;

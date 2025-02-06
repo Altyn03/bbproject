@@ -10,5 +10,6 @@ export interface IHeadingProps {
   ellipsis?: boolean;
   fontWeight?: number;
   fontFamily?: string;
+  textAlign?: string;
   as?: ElementType;
 }

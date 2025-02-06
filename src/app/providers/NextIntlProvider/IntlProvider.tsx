@@ -9,6 +9,7 @@ interface IIntlProviderProps {
 
 export const IntlProvider = ({ children, messages }: IIntlProviderProps) => {
   const { locale } = useRouter();
+
   return (
     <NextIntlClientProvider messages={messages} locale={locale} timeZone='Europe/Moscow'>
       {children}
